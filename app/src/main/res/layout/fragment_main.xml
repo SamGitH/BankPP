@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_back"
-    android:orientation="vertical">
+    android:background="@color/main_back">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/fmc_title"
@@ -14,6 +13,9 @@
         android:layout_height="@dimen/top_title_height"
         card_view:cardElevation="@dimen/top_title_shadow"
         android:backgroundTint="@color/item"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,21 +23,10 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/button_back"
-                android:layout_marginStart="@dimen/small_space"
-                card_view:layout_constraintTop_toTopOf="parent"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                android:padding="@dimen/small_space"
-                />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_my_cards"
+                android:text="@string/text_main"
                 android:textSize="@dimen/top_title_text_size"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
@@ -49,12 +40,4 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fmc_rv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

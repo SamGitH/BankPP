@@ -2,4 +2,13 @@
 <resources>
     <dimen name="top_title_height">60dp</dimen>
     <dimen name="top_title_text_size">18sp</dimen>
+    <dimen name="ic_iv_width">30dp</dimen>
+    <dimen name="ic_iv_height">20dp</dimen>
+    <dimen name="ic_card_number">16sp</dimen>
+    <dimen name="item_card_margin_bottom">1dp</dimen>
+    <dimen name="ic_tv_margin_tb">24dp</dimen>
+
+    <dimen name="small_space">8dp</dimen>
+    <dimen name="normal_space">16dp</dimen>
+    <dimen name="top_title_shadow">8dp</dimen>
 </resources>
