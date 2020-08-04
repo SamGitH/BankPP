@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/fmc_title"
+        android:id="@+id/fm_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_title_height"
         card_view:cardElevation="@dimen/top_title_shadow"

@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/fmc_title"
+        android:id="@+id/fm_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_title_height"
         card_view:cardElevation="@dimen/top_title_shadow"
@@ -41,8 +41,42 @@
     </androidx.cardview.widget.CardView>
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.test.bank.ui.views.MyCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/small_space"
+                android:layout_marginEnd="@dimen/small_space"
+                android:layout_marginTop="@dimen/normal_space"
+                android:layout_marginBottom="@dimen/big_space"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_change_currency"
+                android:textStyle="bold"
+                android:textSize="@dimen/fm_cc_text_size"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="@dimen/normal_space"
+                />
+
+            <LinearLayout
+                android:id="@+id/fm_ll_currency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                />
+
+        </LinearLayout>
 
     </ScrollView>
 

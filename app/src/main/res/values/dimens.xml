@@ -23,4 +23,5 @@
     <dimen name="vcm_text_size_small">8sp</dimen>
     <dimen name="vcm_size">210dp</dimen>
     <dimen name="space_tiny">4dp</dimen>
+    <dimen name="fm_cc_text_size">20sp</dimen>
 </resources>

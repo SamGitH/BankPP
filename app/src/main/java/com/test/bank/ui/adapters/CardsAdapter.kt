@@ -1,10 +1,12 @@
-package com.test.bank
+package com.test.bank.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.test.bank.model.Card
+import com.test.bank.R
 import kotlinx.android.synthetic.main.item_card.view.*
 
 class CardsAdapter (private val cards: ArrayList<Card>) : RecyclerView.Adapter<CardsAdapter.ViewHolderCards>() {

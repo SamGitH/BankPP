@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/item"
         card_view:cardElevation="@dimen/top_title_shadow"
-        card_view:cardCornerRadius="@dimen/vmc_corner_radius">
+        card_view:cardCornerRadius="@dimen/vmc_corner_radius"
+        android:layout_margin="@dimen/top_title_shadow">
         
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
