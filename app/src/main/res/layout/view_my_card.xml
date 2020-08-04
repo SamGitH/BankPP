@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/transparent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/item"
+        card_view:cardElevation="@dimen/top_title_shadow"
+        card_view:cardCornerRadius="@dimen/vmc_corner_radius">
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            
+            <ImageView
+                android:id="@+id/vmc_card_img"
+                android:layout_width="@dimen/vmc_iv_width"
+                android:layout_height="@dimen/vmc_iv_height"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="@id/vmc_number"
+                card_view:layout_constraintBottom_toBottomOf="@id/vmc_number"
+                android:layout_marginStart="@dimen/big_space"
+                tools:src="@android:drawable/sym_call_incoming"
+                />
+
+            <TextView
+                android:id="@+id/vmc_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/vmc_card_number"
+                android:textStyle="bold"
+                card_view:layout_constraintStart_toEndOf="@id/vmc_card_img"
+                card_view:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/huge_space"
+                android:layout_marginStart="@dimen/normal_space"
+                tools:text="4565 4554 5425 2456"
+                />
+
+            <ImageView
+                android:id="@+id/vmc_user_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_user"
+                card_view:layout_constraintStart_toStartOf="@id/vmc_card_img"
+                card_view:layout_constraintTop_toBottomOf="@id/vmc_number"
+                android:layout_marginTop="@dimen/huge_space"
+                />
+
+            <TextView
+                android:id="@+id/vmc_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/vcm_text_size_big"
+                android:textColor="@color/text_color_grey"
+                tools:text="Anton Ivanov"
+                card_view:layout_constraintStart_toEndOf="@id/vmc_user_img"
+                card_view:layout_constraintTop_toTopOf="@id/vmc_user_img"
+                card_view:layout_constraintBottom_toBottomOf="@id/vmc_user_img"
+                android:layout_marginStart="@dimen/normal_space"
+                />
+
+            <TextView
+                android:id="@+id/vmc_valid_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color_grey"
+                android:textSize="@dimen/vcm_text_size_small"
+                android:text="@string/text_valid"
+                card_view:layout_constraintTop_toTopOf="@id/vmc_user_img"
+                card_view:layout_constraintStart_toEndOf="@id/vmc_user_img"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintBottom_toTopOf="@id/vmc_valid_number"
+                android:layout_marginStart="@dimen/vcm_size"
+                android:layout_marginEnd="@dimen/big_space"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/vmc_valid_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color_grey"
+                android:textSize="@dimen/vcm_text_size_big"
+                card_view:layout_constraintTop_toBottomOf="@id/vmc_valid_text"
+                card_view:layout_constraintStart_toStartOf="@id/vmc_valid_text"
+                card_view:layout_constraintEnd_toEndOf="@id/vmc_valid_text"
+                card_view:layout_constraintBottom_toBottomOf="@id/vmc_user_img"
+                tools:text="12/12"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/vmc_balance_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color_grey"
+                android:textSize="@dimen/vcm_text_size_normal"
+                android:text="@string/text_balance"
+                card_view:layout_constraintTop_toBottomOf="@id/vmc_valid_number"
+                card_view:layout_constraintEnd_toEndOf="@id/vmc_balance_static"
+                card_view:layout_constraintBottom_toTopOf="@id/vmc_balance_static"
+                android:layout_marginTop="@dimen/big_space"
+                />
+
+            <TextView
+                android:id="@+id/vmc_balance_static"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/vcm_text_size_big"
+                android:textStyle="bold"
+                card_view:layout_constraintTop_toBottomOf="@id/vmc_balance_text"
+                card_view:layout_constraintEnd_toEndOf="@id/vmc_valid_text"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/huge_space"
+                android:layout_marginTop="@dimen/space_tiny"
+                tools:text="$20 893.09"
+                />
+
+            <TextView
+                android:id="@+id/vmc_balance_floating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@android:color/black"
+                card_view:layout_constraintStart_toStartOf="@id/vmc_user_img"
+                card_view:layout_constraintTop_toTopOf="@id/vmc_balance_text"
+                card_view:layout_constraintBottom_toBottomOf="@id/vmc_balance_static"
+                tools:text="$20 893.09"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

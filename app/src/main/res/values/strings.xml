@@ -2,4 +2,6 @@
     <string name="app_name">BankPP</string>
     <string name="text_my_cards">Мои карты</string>
     <string name="text_main">Главная</string>
+    <string name="text_valid">VALID THRU</string>
+    <string name="text_balance">Your balance</string>
 </resources>

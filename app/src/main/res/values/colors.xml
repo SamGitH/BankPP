@@ -6,4 +6,5 @@
     <color name="main_back">#F1F3F9</color>
     <color name="item">#FFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="text_color_grey">#8C9AAE</color>
 </resources>
