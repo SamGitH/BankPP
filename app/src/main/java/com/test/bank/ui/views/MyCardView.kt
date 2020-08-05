@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.view_my_card.view.*
 class MyCardView(context: Context, attrs: AttributeSet): LinearLayout (context, attrs) {
 
     var card: CardInfo? = null
-
     set (value) {
         field = value
         value?.run {

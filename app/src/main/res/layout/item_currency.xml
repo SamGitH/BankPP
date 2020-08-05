@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    app:cardCornerRadius="@dimen/item_corner_radius"
+    android:backgroundTint="@color/item"
+    card_view:cardElevation="@dimen/shadow"
+    android:layout_marginTop="@dimen/small_space"
+    android:layout_marginStart="@dimen/small_space"
+    android:layout_marginEnd="@dimen/small_space"
+    android:layout_marginBottom="@dimen/normal_space"
+    tools:backgroundTint="@color/main_back"
+    android:layout_gravity="center"
+    android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/icr_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/icr_text_size_symbol"
+            android:textColor="@color/text_color_grey"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/normal_space"
+            tools:text="@string/pounds"
+            />
+
+        <TextView
+            android:id="@+id/icr_currency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/text_color_grey"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/tiny_space"
+            tools:text="GBP"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

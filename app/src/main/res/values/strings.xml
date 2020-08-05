@@ -8,4 +8,12 @@
     <string name="format_money_usd">$%s</string>
     <string name="format_money_gbp">$%s</string>
     <string name="text_change_currency">Change currency</string>
+    <string name="pounds">£</string>
+    <string name="euro">₽</string>
+    <string name="rubles">€</string>
+    <string name="gbp">GBP</string>
+    <string name="eur">EUR</string>
+    <string name="rub">RUB</string>
+    <string name="text_history">History</string>
+
 </resources>

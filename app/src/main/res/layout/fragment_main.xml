@@ -12,7 +12,7 @@
         android:id="@+id/fm_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_title_height"
-        card_view:cardElevation="@dimen/top_title_shadow"
+        card_view:cardElevation="@dimen/shadow"
         android:backgroundTint="@color/item"
         card_view:layout_constraintStart_toStartOf="parent"
         card_view:layout_constraintEnd_toEndOf="parent"
@@ -50,13 +50,12 @@
             android:orientation="vertical">
 
             <com.test.bank.ui.views.MyCardView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/small_space"
-                android:layout_marginEnd="@dimen/small_space"
-                android:layout_marginTop="@dimen/normal_space"
-                android:layout_marginBottom="@dimen/big_space"
+                android:layout_marginStart="@dimen/tiny_space"
+                android:layout_marginEnd="@dimen/tiny_space"
+                android:layout_marginTop="@dimen/big_space"
                 />
 
             <TextView
@@ -67,6 +66,7 @@
                 android:textSize="@dimen/fm_cc_text_size"
                 android:textColor="@android:color/black"
                 android:layout_marginStart="@dimen/normal_space"
+                android:layout_marginTop="@dimen/big_space"
                 />
 
             <LinearLayout
@@ -74,6 +74,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginStart="@dimen/small_space"
+                android:layout_marginEnd="@dimen/small_space"
+                android:layout_marginTop="@dimen/normal_space"
                 />
 
         </LinearLayout>
