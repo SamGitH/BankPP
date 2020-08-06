@@ -7,4 +7,5 @@
     <color name="item">#FFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="text_color_grey">#8C9AAE</color>
+    <color name="selected_currency">#0083E1</color>
 </resources>

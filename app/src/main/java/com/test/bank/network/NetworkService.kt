@@ -1,5 +1,6 @@
 package com.test.bank.network
 
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.Interceptor.Companion.invoke
 import okhttp3.OkHttpClient
@@ -9,7 +10,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object NetworkService {
 
-    private const val BASE_URL = " http://www.mocky.io/v2/"
+    private const val BASE_URL = "https://hr.peterpartner.net/"
+
+    val userApi = retrofitService()
 
     private val loggingInterceptor = run {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
@@ -18,34 +21,18 @@ object NetworkService {
         }
     }
 
-    private val baseInterceptor: Interceptor = invoke { chain ->
-        val newUrl = chain
-            .request()
-            .url
-            .newBuilder()
-            .build()
-
-        val request = chain
-            .request()
-            .newBuilder()
-            .url(newUrl)
-            .build()
-
-        return@invoke chain.proceed(request)
-    }
-
     private val client: OkHttpClient = OkHttpClient
         .Builder()
         .addInterceptor(loggingInterceptor)
-        .addInterceptor(baseInterceptor)
         .build()
 
-//    fun retrofitService(): Api {
-//        return Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(client)
-//            .build()
-//            .create(Api::class.java)
-//    }
+    private fun retrofitService(): UserApi {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .client(client)
+            .build()
+            .create(UserApi::class.java)
+    }
 }

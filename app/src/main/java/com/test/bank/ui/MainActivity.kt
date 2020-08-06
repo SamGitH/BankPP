@@ -15,9 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-            .create(MainViewModel::class.java)
-
         supportFragmentManager.beginTransaction().add(
             R.id.activity_main,
             MainFragment()

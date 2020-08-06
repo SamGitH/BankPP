@@ -7,17 +7,16 @@
     android:layout_width="100dp"
     android:layout_height="100dp"
     app:cardCornerRadius="@dimen/item_corner_radius"
-    android:backgroundTint="@color/item"
     card_view:cardElevation="@dimen/shadow"
     android:layout_marginTop="@dimen/small_space"
     android:layout_marginStart="@dimen/small_space"
     android:layout_marginEnd="@dimen/small_space"
     android:layout_marginBottom="@dimen/normal_space"
-    tools:backgroundTint="@color/main_back"
     android:layout_gravity="center"
     android:layout_weight="1">
 
     <LinearLayout
+        android:id="@+id/icr_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

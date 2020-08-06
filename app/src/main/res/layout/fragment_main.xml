@@ -50,6 +50,7 @@
             android:orientation="vertical">
 
             <com.test.bank.ui.views.MyCardView
+                android:id="@+id/fm_mc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -80,7 +81,7 @@
                 />
 
             <com.test.bank.ui.views.HistoryView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/tiny_space"
