@@ -3,13 +3,15 @@ package com.test.bank.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.test.bank.model.Card
 import com.test.bank.R
+import com.test.bank.model.CardInfo
 import kotlinx.android.synthetic.main.item_card.view.*
 
-class CardsAdapter (private val cards: ArrayList<Card>) : RecyclerView.Adapter<CardsAdapter.ViewHolderCards>() {
+class CardsAdapter (private val cards: ArrayList<CardInfo>) : RecyclerView.Adapter<CardsAdapter.ViewHolderCards>() {
 
     private var callback: Callback? = null
 
@@ -39,6 +41,7 @@ class CardsAdapter (private val cards: ArrayList<Card>) : RecyclerView.Adapter<C
 
     override fun onBindViewHolder(holder: ViewHolderCards, position: Int) {
         holder.number.text = cards[position].number
+        holder.icon.setImageResource(cards[position].imgId)
     }
 
     fun update() {
@@ -48,6 +51,7 @@ class CardsAdapter (private val cards: ArrayList<Card>) : RecyclerView.Adapter<C
     inner class ViewHolderCards(view: View) : RecyclerView.ViewHolder(view) {
 
         val number: TextView = view.ic_card_number
+        val icon: ImageView = view.ic_card_img
 
         init {
 

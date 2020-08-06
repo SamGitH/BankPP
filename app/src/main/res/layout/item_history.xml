@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/big_space">
 
     <ImageView
@@ -18,10 +18,61 @@
         />
 
     <TextView
+        android:id="@+id/ih_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/ih_icon"
+        android:textSize="@dimen/ic_card_number"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@id/ih_icon"
         app:layout_constraintTop_toTopOf="@id/ih_icon"
+        app:layout_constraintBottom_toTopOf="@id/ih_date"
+        android:layout_marginStart="@dimen/normal_space"
+        tools:text="Netflix"
+        />
+
+    <TextView
+        android:id="@+id/ih_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ih_text_size_date"
+        app:layout_constraintStart_toStartOf="@id/ih_name"
+        app:layout_constraintTop_toBottomOf="@id/ih_name"
+        app:layout_constraintBottom_toBottomOf="@id/ih_icon"
+        tools:text="12/12/12"
+        tools:ignore="SmallSp"
+        />
+
+    <TextView
+        android:id="@+id/ih_floating_sum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/vmc_card_number"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="12.80"
+        />
+
+    <TextView
+        android:id="@+id/ih_floating_symbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/ih_floating_sum"
+        app:layout_constraintEnd_toStartOf="@id/ih_floating_sum"
+        android:textSize="@dimen/vmc_card_number"
+        android:textColor="@color/text_color_grey"
+        android:layout_marginEnd="@dimen/tiny_space"
+        tools:text="@string/euro"
+        />
+
+    <TextView
+        android:id="@+id/ih_static_sum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/ih_floating_sum"
+        app:layout_constraintTop_toBottomOf="@id/ih_floating_sum"
+
+        tools:text="$ 9.80"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

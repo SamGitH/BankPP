@@ -14,7 +14,8 @@
         android:backgroundTint="@color/item"
         card_view:cardElevation="@dimen/shadow"
         card_view:cardCornerRadius="@dimen/item_corner_radius"
-        tools:backgroundTint="@color/main_back">
+        tools:backgroundTint="@color/main_back"
+        android:layout_margin="@dimen/margin_shadow">
 
         <LinearLayout
             android:layout_width="match_parent"

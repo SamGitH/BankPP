@@ -79,6 +79,15 @@
                 android:layout_marginTop="@dimen/normal_space"
                 />
 
+            <com.test.bank.ui.views.HistoryView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/tiny_space"
+                android:layout_marginEnd="@dimen/tiny_space"
+                android:layout_marginTop="@dimen/huge_space"
+                />
+
         </LinearLayout>
 
     </ScrollView>

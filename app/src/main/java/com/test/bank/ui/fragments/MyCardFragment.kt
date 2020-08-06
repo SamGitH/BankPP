@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.test.bank.model.Card
 import com.test.bank.R
+import com.test.bank.model.CardInfo
 import com.test.bank.ui.adapters.CardsAdapter
 import kotlinx.android.synthetic.main.fragment_my_cards.*
 
@@ -14,7 +15,7 @@ class MyCardFragment: Fragment(R.layout.fragment_my_cards) {
         CardsAdapter(list)
     }
 
-    var list = arrayListOf<Card>()
+    var list = arrayListOf<CardInfo>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

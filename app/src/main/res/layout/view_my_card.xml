@@ -13,7 +13,7 @@
         android:backgroundTint="@color/item"
         card_view:cardElevation="@dimen/shadow"
         card_view:cardCornerRadius="@dimen/item_corner_radius"
-        android:layout_margin="12dp">
+        android:layout_margin="@dimen/margin_shadow">
         
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"

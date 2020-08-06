@@ -1,6 +1,6 @@
 package com.test.bank.model
 
-data class Card(
+data class Card (
     val number: String,
     val type: String,
     val cardHolder: String,
