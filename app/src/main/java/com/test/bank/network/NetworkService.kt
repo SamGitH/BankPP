@@ -1,8 +1,7 @@
 package com.test.bank.network
 
+import com.test.bank.api.UserApi
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
-import okhttp3.Interceptor
-import okhttp3.Interceptor.Companion.invoke
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -31,7 +30,7 @@ object NetworkService {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-            .client(client)
+//            .client(client)
             .build()
             .create(UserApi::class.java)
     }

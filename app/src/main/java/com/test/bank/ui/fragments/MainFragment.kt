@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.test.bank.R
+import com.test.bank.model.CardInfo
+import com.test.bank.model.CardType
 import com.test.bank.model.CurrencyCardView
 import com.test.bank.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -24,11 +26,26 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.card.observe(viewLifecycleOwner, Observer {
-            fm_mc.card//set card info
+            fm_mc.card = CardInfo(
+                it.number,
+                it.cardHolder,
+                it.valid,
+                it.balance.usd,
+                it.balance.gbp,
+                getIcon(it.type)
+            )
         })
         setCurrency()
         drawSelectedCurrency()
     }
+
+    private fun getIcon(type: CardType): Int = when (type) {
+        CardType.MASTER_CARD -> R.drawable.img_master_card
+        CardType.VISA -> R.drawable.img_visa
+        CardType.UNION_PAY -> R.drawable.img_union_pay
+        CardType.DEFAULT -> R.drawable.img_union_pay//fixme
+    }
+
 
     private fun setCurrency() {
 
@@ -54,7 +71,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     }
 
-    private fun currencyClick (cv: CurrencyCardView){
+    private fun currencyClick(cv: CurrencyCardView) {
         if (cv.selected)
             return
 
@@ -67,14 +84,18 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         drawSelectedCurrency()
     }
 
-    private fun drawSelectedCurrency(){
+    private fun drawSelectedCurrency() {
         itemsCurrency.forEach {
-            if(it.selected){
-                it.cv.icr_ll.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.selected_currency))//fixme
+            if (it.selected) {
+                it.cv.icr_ll.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.selected_currency
+                    )
+                )//fixme
                 it.cv.icr_symbol.setTextColor(resources.getColor(R.color.item))
                 it.cv.icr_currency.setTextColor(resources.getColor(R.color.item))
-            }
-            else {
+            } else {
                 it.cv.icr_ll.setBackgroundColor(resources.getColor(R.color.item))
                 it.cv.icr_symbol.setTextColor(resources.getColor(R.color.text_color_grey))
                 it.cv.icr_currency.setTextColor(resources.getColor(R.color.text_color_grey))
