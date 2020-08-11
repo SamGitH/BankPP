@@ -35,6 +35,10 @@ class UserRepository {
                     }
                 )
             }
+
+//        return NetworkService.userApi.getUser().toObservable().map {
+//            it.users
+//        }
     }
 
     fun getFirstCard(): Single<Card> {

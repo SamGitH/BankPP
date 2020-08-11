@@ -40,8 +40,10 @@ class CardsAdapter (private val cards: ArrayList<CardInfo>) : RecyclerView.Adapt
     override fun getItemCount(): Int = cards.size
 
     override fun onBindViewHolder(holder: ViewHolderCards, position: Int) {
-        holder.number.text = cards[position].number
-        holder.icon.setImageResource(cards[position].imgId)
+        holder.apply {
+            number.text = cards[position].number
+            icon.setImageResource(cards[position].imgId)
+        }
     }
 
     fun update() {

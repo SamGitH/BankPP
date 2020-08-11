@@ -20,10 +20,10 @@ object NetworkService {
         }
     }
 
-    private val client: OkHttpClient = OkHttpClient
-        .Builder()
-        .addInterceptor(loggingInterceptor)
-        .build()
+//    private val client: OkHttpClient = OkHttpClient
+//        .Builder()
+//        .addInterceptor(loggingInterceptor)
+//        .build()
 
     private fun retrofitService(): UserApi {
         return Retrofit.Builder()
