@@ -27,7 +27,7 @@
                 card_view:layout_constraintTop_toTopOf="@id/vmc_number"
                 card_view:layout_constraintBottom_toBottomOf="@id/vmc_number"
                 android:layout_marginStart="@dimen/big_space"
-                tools:src="@android:drawable/sym_call_incoming"
+                tools:src="@drawable/img_visa"
                 />
 
             <TextView

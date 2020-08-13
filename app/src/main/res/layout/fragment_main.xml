@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_back"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/tools">
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/fm_title"
@@ -40,9 +39,10 @@
 
     </androidx.cardview.widget.CardView>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,14 +74,14 @@
                 android:id="@+id/fm_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:overScrollMode="never"
                 android:layout_marginStart="@dimen/small_space"
                 android:layout_marginEnd="@dimen/small_space"
                 android:layout_marginTop="@dimen/normal_space"
                 />
 
             <com.test.bank.ui.views.HistoryView
+                android:id="@+id/fm_hv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -92,6 +92,6 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

@@ -10,21 +10,16 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MyCardViewModel: ViewModel() {
 
-    private val _card: MutableLiveData<List<Card>> = MutableLiveData(listOf())
+    private val _cards: MutableLiveData<List<Card>> = MutableLiveData(listOf())
 
-    val card: LiveData<List<Card>>
-        get() = _card
-
-    private val userRepository: UserRepository by lazy {
-        UserRepository()
-    }
+    val cards: LiveData<List<Card>>
+        get() = _cards
 
     init {
-        userRepository.getCards().subscribeOn(Schedulers.io()).subscribe({
-            val list = mutableListOf<Card>()
-            list.addAll(_card.value!!)
-            list.add(it)
-            _card.postValue(list)
+        UserRepository.getCards().subscribeOn(Schedulers.io()).subscribe({
+            it.let {
+                _cards.postValue(it)
+            }
         }, {
             Log.e("ERROR", it.toString())
         })

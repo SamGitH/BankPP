@@ -11,28 +11,42 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class MainViewModel : ViewModel() {
 
     private val _card: MutableLiveData<Card> = MutableLiveData()
-//    private val _history: MutableLiveData<List<History>> = MutableLiveData()
 
     val card: LiveData<Card>
         get() = _card
 
-//    val history: LiveData<List<History>>
-//        get() = _history
-
-    private val userRepository: UserRepository by lazy {
-        UserRepository()
+    init {
+        updateCard()
     }
 
-    init {
-        userRepository.getFirstCard().subscribeOn(Schedulers.io()).subscribe({
-            _card.postValue(it)
+    private fun updateCard(){
+        UserRepository.getCards().subscribeOn(Schedulers.io()).subscribe({ list ->
+            list.let {
+                list
+                    .find { it.number == UserRepository.selectedCard }
+                    ?.let {
+                        _card.postValue(it)
+                    }
+                    ?: let {
+                        UserRepository.selectedCard = list.first().number
+                        _card.postValue(list.first())
+                    }
+
+//                UserRepository.selectedCard?.let {
+//                    list.forEach {
+//                    }
+//                } ?: let {
+//                    UserRepository.selectedCard = list.first().number
+//                    _card.postValue(list.first())
+//                }
+            }
         }, {
             Log.e("ERROR", it.toString())
         })
     }
 
-    fun changeCard(card: Card){
-        _card.postValue(card)
+    fun changeCard() {
+        updateCard()
     }
 
 }

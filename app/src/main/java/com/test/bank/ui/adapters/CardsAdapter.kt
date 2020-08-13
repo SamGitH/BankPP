@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.test.bank.model.Card
 import com.test.bank.R
 import com.test.bank.model.CardInfo
+import com.test.bank.repository.UserRepository
 import kotlinx.android.synthetic.main.item_card.view.*
 
-class CardsAdapter (private val cards: ArrayList<CardInfo>) : RecyclerView.Adapter<CardsAdapter.ViewHolderCards>() {
+class CardsAdapter(private val cards: ArrayList<CardInfo>) :
+    RecyclerView.Adapter<CardsAdapter.ViewHolderCards>() {
 
     private var callback: Callback? = null
 
@@ -24,7 +26,7 @@ class CardsAdapter (private val cards: ArrayList<CardInfo>) : RecyclerView.Adapt
     }
 
     interface Callback {
-        fun getNativeNameFromAdapter(nativeName: String)
+        fun selectCard()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCards {
@@ -43,6 +45,8 @@ class CardsAdapter (private val cards: ArrayList<CardInfo>) : RecyclerView.Adapt
         holder.apply {
             number.text = cards[position].number
             icon.setImageResource(cards[position].imgId)
+            if(UserRepository.selectedCard != cards[position].number)
+                select.visibility = View.INVISIBLE
         }
     }
 
@@ -54,9 +58,13 @@ class CardsAdapter (private val cards: ArrayList<CardInfo>) : RecyclerView.Adapt
 
         val number: TextView = view.ic_card_number
         val icon: ImageView = view.ic_card_img
+        val select: ImageView = view.ic_card_pick
 
         init {
-
+            view.setOnClickListener {
+                UserRepository.selectedCard = cards[adapterPosition].number
+                callback?.selectCard()
+            }
         }
     }
 }

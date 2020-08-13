@@ -8,15 +8,47 @@ import com.test.bank.network.NetworkService
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 
-class UserRepository {
+object UserRepository {
 
-    fun getCards(): Observable<Card> {
+//    fun getCards(): Observable<Card> {
+//        return NetworkService.userApi
+//            .getUser()
+//            .map { it.users }
+//            .toObservable()
+//            .flatMap { list ->
+//                Observable.fromIterable(list)
+//            }
+//            .map {
+//                Card(
+//                    it.card_number,
+//                    CardType.getCardType(it.type),
+//                    it.cardholder_name,
+//                    it.valid,
+//                    Currency(it.balance.toString(), "", "", ""),
+//                    it.transaction_history.map { model ->
+//                        History(
+//                            model.title,
+//                            model.icon_url,
+//                            model.date,
+//                            Currency(model.amount, "", "", "")
+//                        )
+//                    }
+//                )
+//            }
+//
+//    }
+
+    var selectedCard: String? = null
+
+    fun getCards(): Single<List<Card>> {
         return NetworkService.userApi
             .getUser()
-            .map { it.users }
+            .map {
+                it.users
+            }
             .toObservable()
-            .flatMap { list ->
-                Observable.fromIterable(list)
+            .flatMap {
+                Observable.fromIterable(it)
             }
             .map {
                 Card(
@@ -35,15 +67,7 @@ class UserRepository {
                     }
                 )
             }
-
-//        return NetworkService.userApi.getUser().toObservable().map {
-//            it.users
-//        }
+            .toList()
     }
-
-    fun getFirstCard(): Single<Card> {
-        return getCards().firstOrError()
-    }
-
 
 }
