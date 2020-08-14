@@ -73,6 +73,7 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
                 getIcon(card.type)
             )
 
+            fm_hv.history.clear()
             fm_hv.history.addAll(card.history.map {
                 HistoryInfo(
                     it.title,

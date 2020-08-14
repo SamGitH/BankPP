@@ -4,7 +4,7 @@ import com.test.bank.model.Card
 import com.test.bank.model.CardType
 import com.test.bank.model.Currency
 import com.test.bank.model.History
-import com.test.bank.network.NetworkService
+import com.test.bank.network.UserNetworkService
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 
@@ -41,7 +41,7 @@ object UserRepository {
     var selectedCard: String? = null
 
     fun getCards(): Single<List<Card>> {
-        return NetworkService.userApi
+        return UserNetworkService.userApi
             .getUser()
             .map {
                 it.users

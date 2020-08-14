@@ -5,7 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.bank.model.Card
+import com.test.bank.model.Currency
+import com.test.bank.repository.CurrencyRepository
 import com.test.bank.repository.UserRepository
+import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainViewModel : ViewModel() {
@@ -17,6 +20,11 @@ class MainViewModel : ViewModel() {
 
     init {
         updateCard()
+        CurrencyRepository.getCurrencies().subscribeOn(Schedulers.io()).subscribe({
+
+        },{
+            Log.e("ERROR", it.toString())
+        })
     }
 
     private fun updateCard(){
