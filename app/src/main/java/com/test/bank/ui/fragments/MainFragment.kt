@@ -96,6 +96,7 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
     }
 
     private fun setItemCurrency() {
+        itemsCurrency.clear()
         itemsCurrency.add(
             CurrencyItem(
                 resources.getString(R.string.pounds),

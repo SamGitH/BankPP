@@ -21,7 +21,7 @@ class MainViewModel : ViewModel() {
     init {
         updateCard()
         CurrencyRepository.getCurrencies().subscribeOn(Schedulers.io()).subscribe({
-
+            val currency = it
         },{
             Log.e("ERROR", it.toString())
         })
