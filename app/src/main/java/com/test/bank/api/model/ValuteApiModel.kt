@@ -1,4 +1,4 @@
 package com.test.bank.api.model
 
-data class ValuteApiModel(val charCode: String, val value: Float) {
+data class ValuteApiModel(val GBP: Valute, val EUR: Valute, val USD: Valute) {
 }

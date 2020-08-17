@@ -1,3 +1,3 @@
 package com.test.bank.model
 
-class Currency (var usd: String, var eur: String, var rub: String,  var gbp: String)
+class Currency (var usd: Float, var eur: Float, var rub: Float,  var gbp: Float)

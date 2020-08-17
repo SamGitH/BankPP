@@ -8,10 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.test.bank.R
-import com.test.bank.model.CardInfo
-import com.test.bank.model.CardType
-import com.test.bank.model.CurrencyItem
-import com.test.bank.model.HistoryInfo
+import com.test.bank.model.*
 import com.test.bank.ui.adapters.CurrencyAdapter
 import com.test.bank.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -20,6 +17,9 @@ import kotlinx.android.synthetic.main.item_currency.view.*
 class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback {
 
     private val itemsCurrency = ArrayList<CurrencyItem>()
+
+    private var cardInfo: CardInfo? = null
+    private var card: Card? = null
 
     private val adapter: CurrencyAdapter by lazy {
         CurrencyAdapter(itemsCurrency)
@@ -35,10 +35,10 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
         bind()
     }
 
-    override fun onStart() {
-        super.onStart()
-        adapter.update()
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        adapter.update()
+//    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -47,7 +47,7 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
 
     override fun onResume() {
         super.onResume()
-        viewModel.changeCard()
+        viewModel.updateCard()
         fm_hv.adapter.update()
     }
 
@@ -64,21 +64,23 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
         }
 
         viewModel.card.observe(viewLifecycleOwner, Observer { card ->
-            fm_mc.card = CardInfo(
+            this.card = card
+            cardInfo = CardInfo(
                 card.number,
                 card.cardHolder,
                 card.valid,
-                card.balance.usd,
-                card.balance.gbp,
+                card.balance.usd.toString(),
+                card.balance.gbp.toString(),
                 getIcon(card.type)
             )
+            fm_mc.card = cardInfo
 
             fm_hv.history.clear()
             fm_hv.history.addAll(card.history.map {
                 HistoryInfo(
                     it.title,
                     it.date,
-                    it.amount.usd,
+                    it.amount.usd.toString(),
                     "",
                     "",
                     it.icon_url
@@ -116,6 +118,7 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
                 resources.getString(R.string.rub)
             )
         )
+        adapter.update()
     }
 
     override fun setSelectedColors(view: View) {
@@ -128,6 +131,20 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
         view.icr_currency.setTextColor(resources.getColor(R.color.text_color_grey))
         view.icr_symbol.setTextColor(resources.getColor(R.color.text_color_grey))
         view.icr_ll.setBackgroundColor(resources.getColor(R.color.item))
+    }
+
+    override fun selectNewCurrency(text: String) {
+        cardInfo?.let {
+            when (text) {
+                resources.getString(R.string.gbp) -> it.balanceFloating =
+                    card!!.balance.gbp.toString()
+                resources.getString(R.string.eur) -> it.balanceFloating =
+                    card!!.balance.eur.toString()
+                resources.getString(R.string.rub) -> it.balanceFloating =
+                    card!!.balance.rub.toString()
+            }
+        }
+        fm_mc.card = cardInfo
     }
 
 }

@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.bank.model.Card
 import com.test.bank.model.Currency
+import com.test.bank.model.History
 import com.test.bank.repository.CurrencyRepository
 import com.test.bank.repository.UserRepository
-import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainViewModel : ViewModel() {
@@ -18,43 +18,62 @@ class MainViewModel : ViewModel() {
     val card: LiveData<Card>
         get() = _card
 
+    private var coeffCurrency = Currency(1.toFloat(), 0.toFloat(), 0.toFloat(), 0.toFloat())
+
     init {
         updateCard()
-        CurrencyRepository.getCurrencies().subscribeOn(Schedulers.io()).subscribe({
-            val currency = it
-        },{
-            Log.e("ERROR", it.toString())
-        })
     }
 
-    private fun updateCard(){
+    fun updateCard() {
         UserRepository.getCards().subscribeOn(Schedulers.io()).subscribe({ list ->
             list.let {
                 list
                     .find { it.number == UserRepository.selectedCard }
                     ?.let {
-                        _card.postValue(it)
+                        _card.postValue(getCardWithCurrentCurrency(it))
                     }
                     ?: let {
                         UserRepository.selectedCard = list.first().number
-                        _card.postValue(list.first())
+                        _card.postValue(getCardWithCurrentCurrency(list.first()))
                     }
-
-//                UserRepository.selectedCard?.let {
-//                    list.forEach {
-//                    }
-//                } ?: let {
-//                    UserRepository.selectedCard = list.first().number
-//                    _card.postValue(list.first())
-//                }
+                setCurrentCurrency()
             }
         }, {
             Log.e("ERROR", it.toString())
         })
     }
 
-    fun changeCard() {
-        updateCard()
+    private fun setCurrentCurrency(){
+        CurrencyRepository.getCurrencies().subscribeOn(Schedulers.io()).subscribe({ currency ->
+            coeffCurrency = currency
+            _card.value?.let {
+                _card.postValue(getCardWithCurrentCurrency(it))
+            }
+        }, {
+            Log.e("ERROR", it.toString())
+        })
     }
 
+    private fun getCardWithCurrentCurrency(card: Card): Card {
+        val history = card.history.map {
+            History(it.title, it.icon_url, it.date, getCurrency(it.amount.usd))
+        }
+
+        return Card(
+            card.number,
+            card.type,
+            card.cardHolder,
+            card.valid,
+            getCurrency(card.balance.usd),
+            history
+        )
+    }
+
+    private fun getCurrency(balance: Float): Currency =
+        Currency(
+            balance,
+            balance * coeffCurrency.eur,
+            balance * coeffCurrency.gbp,
+            balance * coeffCurrency.rub
+        )
 }

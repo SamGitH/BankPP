@@ -47,7 +47,7 @@ class MyCardFragment : Fragment(R.layout.fragment_my_cards), CardsAdapter.Callba
                     it.number,
                     it.cardHolder,
                     it.valid,
-                    it.balance.usd,
+                    it.balance.usd.toString(),
                     "",
                     getIcon(it.type)
                 )

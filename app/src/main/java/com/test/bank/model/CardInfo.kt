@@ -7,6 +7,6 @@ data class CardInfo (
     val cardHolder: String,
     val valid: String,
     val balanceStatic: String,
-    val balanceFloating: String,
+    var balanceFloating: String,
     @DrawableRes val imgId: Int
 )
