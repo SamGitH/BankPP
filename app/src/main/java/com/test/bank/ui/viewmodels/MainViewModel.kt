@@ -56,7 +56,7 @@ class MainViewModel : ViewModel() {
 
     private fun getCardWithCurrentCurrency(card: Card): Card {
         val history = card.history.map {
-            History(it.title, it.icon_url, it.date, getCurrency(it.amount.usd))
+            History(it.title, it.icon_url, it.date, getCurrentCurrency(it.amount.usd))
         }
 
         return Card(
@@ -64,16 +64,16 @@ class MainViewModel : ViewModel() {
             card.type,
             card.cardHolder,
             card.valid,
-            getCurrency(card.balance.usd),
+            getCurrentCurrency(card.balance.usd),
             history
         )
     }
 
-    private fun getCurrency(balance: Float): Currency =
+    private fun getCurrentCurrency(balance: Float): Currency =
         Currency(
             balance,
             balance * coeffCurrency.eur,
-            balance * coeffCurrency.gbp,
-            balance * coeffCurrency.rub
+            balance * coeffCurrency.rub,
+            balance * coeffCurrency.gbp
         )
 }

@@ -13,6 +13,6 @@ object CurrencyRepository {
     }
 
     private fun getCurrencyToUsd(usd: Float, gbp: Float, eur: Float): Currency {
-        return Currency(1.toFloat(), eur/usd, usd, gbp/usd)
+        return Currency(1.toFloat(), usd/eur, usd, usd/gbp)
     }
 }
