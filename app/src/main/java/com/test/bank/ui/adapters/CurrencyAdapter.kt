@@ -29,7 +29,7 @@ class CurrencyAdapter(
     interface Callback {
         fun setSelectedColors(view: View)
         fun setDisableColors(view: View)
-        fun selectNewCurrency(text: String)
+        fun selectNewCurrency(symbol: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCurrency {
@@ -66,7 +66,7 @@ class CurrencyAdapter(
 
         init {
             view.setOnClickListener {
-                callback?.selectNewCurrency(currencyItems[adapterPosition].text)
+                callback?.selectNewCurrency(currencyItems[adapterPosition].symbol)
                 resetCurrencies(adapterPosition)
             }
         }

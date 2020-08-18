@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.test.bank.R
 import com.test.bank.model.*
+import com.test.bank.tools.formatCurrencyString
 import com.test.bank.ui.adapters.CurrencyAdapter
 import com.test.bank.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -71,36 +72,50 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
                 card.valid,
                 String.format(
                     resources.getString(R.string.format_money_usd),
-                    card.balance.usd.toString()
+                    card.balance.usd.toString().formatCurrencyString()
                 ),
                 String.format(
                     resources.getString(R.string.format_money_gbp),
-                    card.balance.gbp.toString()
+                    card.balance.gbp.toString().formatCurrencyString()
                 ),
                 getIcon(card.type)
             )
             fm_mc.card = cardInfo
 
-            fm_hv.history.clear()
-            fm_hv.history.addAll(card.history.map {
-                HistoryInfo(
-                    it.title,
-                    it.date,
-                    it.amount.usd.toString(),
-                    "",
-                    "",
-                    it.icon_url
-                )
-            }) //fixme
-            fm_hv.adapter.update()
+            setFmHv(CurrencySymbol.POUND.symbol, resources.getString(R.string.pounds))
         })
+    }
+
+    private fun setFmHv(currency: String, symbol: String) {
+        fm_hv.history.clear()
+        fm_hv.history.addAll(card!!.history.map {
+            val amount = when (currency) {
+                CurrencySymbol.POUND.symbol -> it.amount.gbp.toString()
+                CurrencySymbol.RUBLE.symbol -> it.amount.rub.toString()
+                CurrencySymbol.EURO.symbol -> it.amount.eur.toString()
+                else -> ""
+            }.formatCurrencyString().replace("-", "")
+
+            HistoryInfo(
+                it.title,
+                it.date,
+                String.format(
+                    resources.getString(R.string.format_money_usd_space),
+                    it.amount.usd.toString().formatCurrencyString()
+                ).replace("-", ""),
+                amount,
+                "-${symbol}",
+                it.icon_url
+            )
+        })
+        fm_hv.adapter.update()
     }
 
     private fun getIcon(type: CardType): Int = when (type) {
         CardType.MASTER_CARD -> R.drawable.img_master_card
         CardType.VISA -> R.drawable.img_visa
         CardType.UNION_PAY -> R.drawable.img_union_pay
-        CardType.DEFAULT -> R.drawable.img_union_pay//fixme
+        CardType.DEFAULT -> R.drawable.img_card_not_found
     }
 
     private fun setItemCurrency() {
@@ -127,21 +142,6 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
         adapter.update()
     }
 
-    private fun formatCurrencyString(string: String): String {
-        var postfix = string.substringAfter(".")
-        postfix = when {
-            postfix.length == 1 && postfix == "0" -> ""
-            postfix.length == 1 -> postfix + "0"
-            postfix.length > 2 -> "${postfix[0]}${postfix[1]}"
-            else -> postfix
-        }
-
-        var prefix = string.substringBefore(".")
-
-//        for (i in 0..)
-        return ""
-    }
-
     override fun setSelectedColors(view: View) {
         view.icr_currency.setTextColor(resources.getColor(R.color.item))
         view.icr_symbol.setTextColor(resources.getColor(R.color.item))
@@ -154,15 +154,33 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
         view.icr_ll.setBackgroundColor(resources.getColor(R.color.item))
     }
 
-    override fun selectNewCurrency(text: String) {
+    override fun selectNewCurrency(symbol: String) {
         cardInfo?.let {
-            when (text) {
-                resources.getString(R.string.gbp) -> it.balanceFloating =
-                    String.format(resources.getString(R.string.format_money_gbp), card!!.balance.gbp.toString())
-                resources.getString(R.string.eur) -> it.balanceFloating =
-                    String.format(resources.getString(R.string.format_money_eur), card!!.balance.eur.toString())
-                resources.getString(R.string.rub) -> it.balanceFloating =
-                    String.format(resources.getString(R.string.format_money_rub), card!!.balance.rub.toString())
+            when (symbol) {
+                CurrencySymbol.POUND.symbol -> {
+                    it.balanceFloating =
+                        String.format(
+                            resources.getString(R.string.format_money_gbp),
+                            card!!.balance.gbp.toString().formatCurrencyString()
+                        )
+                    setFmHv(CurrencySymbol.POUND.symbol, resources.getString(R.string.pounds))
+                }
+                CurrencySymbol.EURO.symbol -> {
+                    it.balanceFloating =
+                        String.format(
+                            resources.getString(R.string.format_money_eur),
+                            card!!.balance.eur.toString().formatCurrencyString()
+                        )
+                    setFmHv(CurrencySymbol.EURO.symbol, resources.getString(R.string.euro))
+                }
+                CurrencySymbol.RUBLE.symbol -> {
+                    it.balanceFloating =
+                        String.format(
+                            resources.getString(R.string.format_money_rub),
+                            card!!.balance.rub.toString().formatCurrencyString()
+                        )
+                    setFmHv(CurrencySymbol.RUBLE.symbol, resources.getString(R.string.rubles))
+                }
             }
         }
         fm_mc.card = cardInfo
