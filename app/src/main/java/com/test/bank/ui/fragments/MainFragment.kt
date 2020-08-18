@@ -69,8 +69,14 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
                 card.number,
                 card.cardHolder,
                 card.valid,
-                card.balance.usd.toString(),
-                card.balance.gbp.toString(),
+                String.format(
+                    resources.getString(R.string.format_money_usd),
+                    card.balance.usd.toString()
+                ),
+                String.format(
+                    resources.getString(R.string.format_money_gbp),
+                    card.balance.gbp.toString()
+                ),
                 getIcon(card.type)
             )
             fm_mc.card = cardInfo
@@ -121,6 +127,21 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
         adapter.update()
     }
 
+    private fun formatCurrencyString(string: String): String {
+        var postfix = string.substringAfter(".")
+        postfix = when {
+            postfix.length == 1 && postfix == "0" -> ""
+            postfix.length == 1 -> postfix + "0"
+            postfix.length > 2 -> "${postfix[0]}${postfix[1]}"
+            else -> postfix
+        }
+
+        var prefix = string.substringBefore(".")
+
+//        for (i in 0..)
+        return ""
+    }
+
     override fun setSelectedColors(view: View) {
         view.icr_currency.setTextColor(resources.getColor(R.color.item))
         view.icr_symbol.setTextColor(resources.getColor(R.color.item))
@@ -137,11 +158,11 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
         cardInfo?.let {
             when (text) {
                 resources.getString(R.string.gbp) -> it.balanceFloating =
-                    card!!.balance.gbp.toString()
+                    String.format(resources.getString(R.string.format_money_gbp), card!!.balance.gbp.toString())
                 resources.getString(R.string.eur) -> it.balanceFloating =
-                    card!!.balance.eur.toString()
+                    String.format(resources.getString(R.string.format_money_eur), card!!.balance.eur.toString())
                 resources.getString(R.string.rub) -> it.balanceFloating =
-                    card!!.balance.rub.toString()
+                    String.format(resources.getString(R.string.format_money_rub), card!!.balance.rub.toString())
             }
         }
         fm_mc.card = cardInfo
