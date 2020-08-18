@@ -64,7 +64,7 @@ class MyCardFragment : Fragment(R.layout.fragment_my_cards), CardsAdapter.Callba
         CardType.MASTER_CARD -> R.drawable.img_master_card
         CardType.VISA -> R.drawable.img_visa
         CardType.UNION_PAY -> R.drawable.img_union_pay
-        CardType.DEFAULT -> R.drawable.img_union_pay//fixme
+        CardType.DEFAULT -> R.drawable.img_card_not_found
     }
 
     override fun selectCard() {

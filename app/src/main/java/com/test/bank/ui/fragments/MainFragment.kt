@@ -33,13 +33,9 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setItemCurrency()
+        viewModel.updateCard()
         bind()
     }
-
-//    override fun onStart() {
-//        super.onStart()
-//        adapter.update()
-//    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -48,7 +44,7 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
 
     override fun onResume() {
         super.onResume()
-        viewModel.updateCard()
+//        viewModel.updateCard()
         fm_hv.adapter.update()
     }
 
