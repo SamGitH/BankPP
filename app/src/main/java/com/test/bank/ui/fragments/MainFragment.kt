@@ -1,6 +1,7 @@
 package com.test.bank.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -33,8 +34,9 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setItemCurrency()
-        viewModel.updateCard()
         bind()
+        viewModel.updateCard()
+        Log.d("TAG", "onViewCreated")
     }
 
     override fun onDestroy() {
@@ -44,8 +46,8 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
 
     override fun onResume() {
         super.onResume()
-//        viewModel.updateCard()
         fm_hv.adapter.update()
+        Log.d("TAG", "onResume")
     }
 
     private fun bind() {
@@ -62,6 +64,7 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
 
         viewModel.card.observe(viewLifecycleOwner, Observer { card ->
             this.card = card
+            Log.d("TAG", "viewModel.card.observe")
             cardInfo = CardInfo(
                 card.number,
                 card.cardHolder,
@@ -100,7 +103,7 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
                     it.amount.usd.toString().formatCurrencyString()
                 ).replace("-", ""),
                 amount,
-                "-${symbol}",
+                "- $symbol",
                 it.icon_url
             )
         })

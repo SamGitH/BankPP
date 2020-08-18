@@ -21,22 +21,24 @@ class MainViewModel : ViewModel() {
     private var coeffCurrency = Currency(1.toFloat(), 0.toFloat(), 0.toFloat(), 0.toFloat())
 
     init {
-        updateCard()
+        setCurrentCurrency()
     }
 
     fun updateCard() {
+        Log.d("TAG", "updateCard")
         UserRepository.getCards().subscribeOn(Schedulers.io()).subscribe({ list ->
             list.let {
                 list
                     .find { it.number == UserRepository.selectedCard }
                     ?.let {
                         _card.postValue(getCardWithCurrentCurrency(it))
+                        Log.d("TAG", "updateCardFind:${it.number}")
                     }
                     ?: let {
                         UserRepository.selectedCard = list.first().number
                         _card.postValue(getCardWithCurrentCurrency(list.first()))
+                        Log.d("TAG", "updateCardFirst:${list.first().number}")
                     }
-                setCurrentCurrency()
             }
         }, {
             Log.e("ERROR", it.toString())
@@ -44,11 +46,13 @@ class MainViewModel : ViewModel() {
     }
 
     private fun setCurrentCurrency(){
+        Log.d("TAG", "setCurrentCurrency")
         CurrencyRepository.getCurrencies().subscribeOn(Schedulers.io()).subscribe({ currency ->
             coeffCurrency = currency
             _card.value?.let {
                 _card.postValue(getCardWithCurrentCurrency(it))
-            }
+                Log.d("TAG", "setCurrentCurrency:${it.number}")
+                }
         }, {
             Log.e("ERROR", it.toString())
         })

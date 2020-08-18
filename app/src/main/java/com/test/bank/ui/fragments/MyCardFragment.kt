@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.test.bank.R
-import com.test.bank.model.Card
 import com.test.bank.model.CardInfo
 import com.test.bank.model.CardType
 import com.test.bank.ui.adapters.CardsAdapter
