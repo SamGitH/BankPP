@@ -1,8 +1,13 @@
 package com.test.bank.ui.fragments
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +20,7 @@ import com.test.bank.ui.adapters.CurrencyAdapter
 import com.test.bank.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.item_currency.view.*
+
 
 class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback {
 
@@ -31,8 +37,18 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
         ViewModelProvider.NewInstanceFactory().create(MainViewModel::class.java)
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        checkNetwork()
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        fm_progress_layout.visibility = View.VISIBLE
         setItemCurrency()
         bind()
         viewModel.updateCard()
@@ -63,6 +79,7 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
         }
 
         viewModel.card.observe(viewLifecycleOwner, Observer { card ->
+            fm_progress_layout.visibility = View.INVISIBLE
             this.card = card
             Log.d("TAG", "viewModel.card.observe")
             cardInfo = CardInfo(
@@ -82,6 +99,10 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
             fm_mc.card = cardInfo
 
             setFmHv(CurrencySymbol.POUND.symbol, resources.getString(R.string.pounds))
+
+            if(card.balance.usd != 0.toFloat() && card.balance.rub == 0.toFloat()){
+                viewModel.setCurrentCurrency()
+            }
         })
     }
 
@@ -108,6 +129,18 @@ class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback 
             )
         })
         fm_hv.adapter.update()
+    }
+
+    private fun checkNetwork() {
+        if (!isNetworkConnected()){
+            findNavController().navigate(R.id.noInternetFragment)
+        }
+    }
+
+    private fun isNetworkConnected(): Boolean {
+        val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
+        return activeNetwork?.isConnectedOrConnecting == true
     }
 
     private fun getIcon(type: CardType): Int = when (type) {

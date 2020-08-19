@@ -24,5 +24,6 @@
     <string name="rub">RUB</string>
     <string name="text_change_currency">Change currency</string>
     <string name="text_history">History</string>
+    <string name="text_no_internet">No internet</string>
 
 </resources>

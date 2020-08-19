@@ -1,97 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/fragment_main"
+<RelativeLayout
+    android:id="@+id/fragment_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/main_back"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/fm_title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_title_height"
-        card_view:cardElevation="@dimen/shadow"
-        android:backgroundTint="@color/item"
-        card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintEnd_toEndOf="parent"
-        card_view:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:background="@color/main_back"
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fm_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="@dimen/top_title_height"
+            android:backgroundTint="@color/item"
+            card_view:cardElevation="@dimen/shadow"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_main"
-                android:textSize="@dimen/top_title_text_size"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                card_view:layout_constraintTop_toTopOf="parent"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_main"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/top_title_text_size"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never">
+        </androidx.cardview.widget.CardView>
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:overScrollMode="never">
 
-            <com.test.bank.ui.views.MyCardView
-                android:id="@+id/fm_mc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/tiny_space"
-                android:layout_marginEnd="@dimen/tiny_space"
-                android:layout_marginTop="@dimen/big_space"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_change_currency"
-                android:textStyle="bold"
-                android:textSize="@dimen/fm_cc_text_size"
-                android:textColor="@android:color/black"
-                android:layout_marginStart="@dimen/normal_space"
-                android:layout_marginTop="@dimen/big_space"
-                />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fm_rv"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                android:layout_marginStart="@dimen/small_space"
-                android:layout_marginEnd="@dimen/small_space"
-                android:layout_marginTop="@dimen/normal_space"
-                />
+                android:orientation="vertical">
 
-            <com.test.bank.ui.views.HistoryView
-                android:id="@+id/fm_hv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/tiny_space"
-                android:layout_marginEnd="@dimen/tiny_space"
-                android:layout_marginTop="@dimen/huge_space"
-                />
+                <com.test.bank.ui.views.MyCardView
+                    android:id="@+id/fm_mc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/tiny_space"
+                    android:layout_marginTop="@dimen/big_space"
+                    android:layout_marginEnd="@dimen/tiny_space" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_space"
+                    android:layout_marginTop="@dimen/big_space"
+                    android:text="@string/text_change_currency"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/fm_cc_text_size"
+                    android:textStyle="bold" />
 
-    </androidx.core.widget.NestedScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fm_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/small_space"
+                    android:layout_marginTop="@dimen/normal_space"
+                    android:layout_marginEnd="@dimen/small_space"
+                    android:overScrollMode="never" />
 
-</LinearLayout>
+                <com.test.bank.ui.views.HistoryView
+                    android:id="@+id/fm_hv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/tiny_space"
+                    android:layout_marginTop="@dimen/huge_space"
+                    android:layout_marginEnd="@dimen/tiny_space" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fm_progress_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/progress_back">
+
+        <ProgressBar
+            android:id="@+id/fm_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

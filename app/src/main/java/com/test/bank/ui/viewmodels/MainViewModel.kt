@@ -18,7 +18,7 @@ class MainViewModel : ViewModel() {
     val card: LiveData<Card>
         get() = _card
 
-    private var coeffCurrency = Currency(1.toFloat(), 0.toFloat(), 0.toFloat(), 0.toFloat())
+    var coeffCurrency = Currency(1.toFloat(), 0.toFloat(), 0.toFloat(), 0.toFloat())
 
     init {
         setCurrentCurrency()
@@ -45,10 +45,11 @@ class MainViewModel : ViewModel() {
         })
     }
 
-    private fun setCurrentCurrency(){
+    fun setCurrentCurrency(){
         Log.d("TAG", "setCurrentCurrency")
         CurrencyRepository.getCurrencies().subscribeOn(Schedulers.io()).subscribe({ currency ->
             coeffCurrency = currency
+            Log.d("TAG", "setCoeff:${coeffCurrency.rub}")
             _card.value?.let {
                 _card.postValue(getCardWithCurrentCurrency(it))
                 Log.d("TAG", "setCurrentCurrency:${it.number}")
@@ -62,7 +63,7 @@ class MainViewModel : ViewModel() {
         val history = card.history.map {
             History(it.title, it.icon_url, it.date, getCurrentCurrency(it.amount.usd))
         }
-
+        Log.d("TAG", "coeff:${coeffCurrency.rub}")
         return Card(
             card.number,
             card.type,

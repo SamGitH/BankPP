@@ -13,4 +13,8 @@
         android:id="@+id/myCardFragment"
         android:name="com.test.bank.ui.fragments.MyCardFragment"
         android:label="MyCardFragment" />
+    <fragment
+        android:id="@+id/noInternetFragment"
+        android:name="com.test.bank.ui.fragments.NoInternetFragment"
+        android:label="NoInternetFragment" />
 </navigation>

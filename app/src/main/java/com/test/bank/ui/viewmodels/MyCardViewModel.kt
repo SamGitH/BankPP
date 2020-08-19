@@ -15,7 +15,7 @@ class MyCardViewModel: ViewModel() {
     val cards: LiveData<List<Card>>
         get() = _cards
 
-    init {
+    fun update(){
         UserRepository.getCards().subscribeOn(Schedulers.io()).subscribe({
             it.let {
                 _cards.postValue(it)

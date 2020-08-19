@@ -2,10 +2,11 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#636363</color>
     <color name="main_back">#F1F3F9</color>
     <color name="item">#FFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="text_color_grey">#8C9AAE</color>
     <color name="selected_currency">#0083E1</color>
+    <color name="progress_back">#97A1A1A1</color>
 </resources>
