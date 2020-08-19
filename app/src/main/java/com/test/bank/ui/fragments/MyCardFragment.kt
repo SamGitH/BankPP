@@ -16,7 +16,6 @@ import com.test.bank.model.CardInfo
 import com.test.bank.model.CardType
 import com.test.bank.ui.adapters.CardsAdapter
 import com.test.bank.ui.viewmodels.MyCardViewModel
-import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_my_cards.*
 
 class MyCardFragment : Fragment(R.layout.fragment_my_cards), CardsAdapter.Callback {

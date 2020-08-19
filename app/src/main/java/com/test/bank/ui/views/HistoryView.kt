@@ -17,13 +17,6 @@ class HistoryView (context: Context, attrs: AttributeSet): LinearLayout(context,
     }
 
     var history: ArrayList<HistoryInfo> = arrayListOf()
-//    set(value) {
-//        field = value
-//        value.apply {
-//            this@HistoryView.vh_rv.adapter = adapter
-//            this@HistoryView.vh_rv.layoutManager = LinearLayoutManager(context)
-//        }
-//    }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_history, this, true)

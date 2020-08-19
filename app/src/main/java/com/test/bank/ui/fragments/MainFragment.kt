@@ -21,7 +21,6 @@ import com.test.bank.ui.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.item_currency.view.*
 
-
 class MainFragment : Fragment(R.layout.fragment_main), CurrencyAdapter.Callback {
 
     private val itemsCurrency = ArrayList<CurrencyItem>()

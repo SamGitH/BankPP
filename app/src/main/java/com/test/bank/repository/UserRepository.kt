@@ -12,16 +12,6 @@ object UserRepository {
 
     var selectedCard: String? = null
 
-//    private fun getCoeffCurrency(): Currency? {
-//        var currency: Currency? = null
-//        CurrencyRepository.getCurrencies().subscribeOn(Schedulers.io()).subscribe({
-//            currency = it
-//        }, {
-//            Log.e("ERROR", it.toString())
-//        })
-//        return currency
-//    }
-
     fun getCards(): Single<List<Card>> {
         return UserNetworkService.userApi
             .getUser()
@@ -51,17 +41,4 @@ object UserRepository {
             }
             .toList()
     }
-
-//    private fun getCurrency(balance: Float): Currency {
-//        val currency = Currency(0.toFloat(), 0.toFloat(), 0.toFloat(), 0.toFloat())
-//
-//        getCoeffCurrency()?.let {
-//            currency.usd = balance
-//            currency.eur = balance * it.eur
-//            currency.gbp = balance * it.gbp
-//            currency.rub = balance * it.rub
-//        }
-//
-//        return currency
-//    }
 }

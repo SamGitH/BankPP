@@ -12,10 +12,6 @@
 
     <string name="format_money_usd_space">$ %s</string>
 
-    <!--    <string name="format_symbol_eur">-%s €</string>-->
-<!--    <string name="format_symbol_rub">-%s ₽</string>-->
-<!--    <string name="format_symbol_gbp">-%s £</string>-->
-
     <string name="pounds">£</string>
     <string name="euro">€</string>
     <string name="rubles">₽</string>

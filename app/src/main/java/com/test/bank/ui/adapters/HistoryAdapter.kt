@@ -14,20 +14,6 @@ import kotlinx.android.synthetic.main.item_history.view.*
 class HistoryAdapter(private val history: ArrayList<HistoryInfo>) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolderHistory>() {
 
-    private var callback: Callback? = null
-
-    fun registerCallback(listener: Callback) {
-        callback = listener
-    }
-
-    fun unregisterCallback() {
-        callback = null
-    }
-
-    interface Callback {
-        fun getNativeNameFromAdapter(nativeName: String)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderHistory {
         return ViewHolderHistory(
             LayoutInflater.from(parent.context).inflate(
@@ -65,8 +51,5 @@ class HistoryAdapter(private val history: ArrayList<HistoryInfo>) :
         val sumStatic: TextView = view.ih_static_sum
         val icon: ImageView = view.ih_icon
 
-        init {
-
-        }
     }
 }

@@ -9,7 +9,7 @@ enum class CardType (var type: String) {
     companion object {
         fun getCardType (type: String): CardType{
 
-            for (cardType in CardType.values()){
+            for (cardType in values()){
                 if(cardType.type == type)
                     return cardType
             }

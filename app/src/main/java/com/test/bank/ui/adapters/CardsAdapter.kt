@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.test.bank.model.Card
 import com.test.bank.R
 import com.test.bank.model.CardInfo
 import com.test.bank.repository.UserRepository

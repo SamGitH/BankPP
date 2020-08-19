@@ -1,7 +1,6 @@
 package com.test.bank.network
 
 import com.test.bank.api.CurrencyApi
-import com.test.bank.api.UserApi
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
